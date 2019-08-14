@@ -1,8 +1,8 @@
-# Overview
+## Overview
 
 <img src="https://github.com/wakdyan/Flutter-Restaurant-UI/blob/master/assets/Home%20Page.png?raw=true" width="271" height="462" />   
 
-# Getting Started
+## Getting Started
 
 This project is a starting point for a Flutter application.
 
@@ -15,7 +15,7 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-# Widgets Used
+## Widgets Used
 
 - BottomNavigationBar
 - Column
@@ -30,9 +30,9 @@ samples, guidance on mobile development, and a full API reference.
 - Stack
 - Text
 
-# Credits
+## Credits
 
 [Masudur Rahman](https://dribbble.com/shots/4077985-Restaurants-App-Exploration)
 
-# Note
+## Note
 <b>If you feel this project helps you in learn flutter, please give me ★.
