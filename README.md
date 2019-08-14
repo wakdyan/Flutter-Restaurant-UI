@@ -36,4 +36,5 @@ samples, guidance on mobile development, and a full API reference.
 
 [Masudur Rahman](https://dribbble.com/shots/4077985-Restaurants-App-Exploration)
 
+## Note
 <b>If you feel this project helps you in learn flutter, please give me ★.
