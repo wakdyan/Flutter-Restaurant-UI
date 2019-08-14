@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/assets.dart';
 import 'package:restaurant_app/style.dart';
 
 void main() {
@@ -16,15 +17,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  var _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    //* Make a Body
     final body = Scaffold(
       backgroundColor: Colors.transparent,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(top: 75, left: 35, right: 35),
+              padding: const EdgeInsets.only(top: 55, left: 35, right: 35),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -73,24 +77,28 @@ class _MyAppState extends State<MyApp> {
                           ),
                         ],
                         image: DecorationImage(
-                          image: NetworkImage(
-                              'https://images.unsplash.com/photo-1514843319620-4f042827c481?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80'),
+                          image: NetworkImage(imgUrl[index]),
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
                     Container(
-                      height: 230,
+                      height: 260,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15),
+                        ),
                         gradient: LinearGradient(
-                          colors: [
-                            Colors.white,
-                            Colors.white,
-                            Colors.transparent
-                          ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.white,
+                            Colors.white54,
+                            Colors.white10,
+                            Colors.transparent
+                          ],
+                          stops: [.38, .47, .7, 1],
                         ),
                       ),
                       child: Padding(
@@ -131,11 +139,17 @@ class _MyAppState extends State<MyApp> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(
-                                        'Mexican Bite',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                2.1,
+                                        child: Text(
+                                          imgTitle[index],
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                       Row(
@@ -200,7 +214,7 @@ class _MyAppState extends State<MyApp> {
                                               size: 18,
                                               semanticLabel: 'Store',
                                               color: (index % 2 == 0)
-                                                  ? Colors.blue
+                                                  ? Color(0xFF5585f4)
                                                   : Colors.grey),
                                           onPressed: () {
                                             print('object');
@@ -216,7 +230,8 @@ class _MyAppState extends State<MyApp> {
                               padding: const EdgeInsets.only(top: 8, left: 52),
                               child: Text(
                                 'Mexican - 18 Tank House Lane Hips spot for Mexican tapas with a patio Open until 12.00 AM.',
-                                style: TextStyle(color: Colors.black45),
+                                style: TextStyle(
+                                    color: Colors.black45, fontSize: 13),
                               ),
                             )
                           ],
@@ -260,32 +275,42 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ),
               );
-            }, childCount: 5),
+            }, childCount: imgUrl.length),
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.blueAccent[200],
-        unselectedItemColor: Colors.black26,
-        unselectedFontSize: 0,
-        selectedFontSize: 0,
-        iconSize: 30,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.explore), title: Text('Explorer')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.apps), title: Text('Explorer')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.camera_alt), title: Text('Camera')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.notifications), title: Text('Notifications')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person), title: Text('Contact')),
-        ],
+      bottomNavigationBar: Container(
+        height: 45,
+        child: BottomNavigationBar(
+          selectedItemColor: Color(0xFF5585f4),
+          unselectedItemColor: Colors.black26,
+          unselectedFontSize: 0,
+          selectedFontSize: 0,
+          iconSize: 30,
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.explore), title: Text('Explorer')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.widgets), title: Text('Apps')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.camera_alt), title: Text('Camera')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.notifications), title: Text('Notifications')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person), title: Text('Contact')),
+          ],
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          currentIndex: _currentIndex,
+        ),
       ),
     );
 
+    //* Make Circle Background
     final circleBackground = Positioned(
       top: -70,
       left: -35,
@@ -305,13 +330,13 @@ class _MyAppState extends State<MyApp> {
     );
 
     return Container(
-      color: Colors.white,
-      child: Stack(
-        children: <Widget>[
-          circleBackground,
-          body,
-        ],
-      ),
-    );
+        color: Colors.white,
+        child: Stack(
+    children: <Widget>[
+      circleBackground,
+      body,
+    ],
+        ),
+      );
   }
 }
