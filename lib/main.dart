@@ -330,13 +330,13 @@ class _MyAppState extends State<MyApp> {
     );
 
     return Container(
-        color: Colors.white,
-        child: Stack(
-    children: <Widget>[
-      circleBackground,
-      body,
-    ],
-        ),
-      );
+      color: Colors.white,
+      child: Stack(
+        children: <Widget>[
+          circleBackground,
+          body,
+        ],
+      ),
+    );
   }
 }
