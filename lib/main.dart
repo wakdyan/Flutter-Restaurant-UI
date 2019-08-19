@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/assets.dart';
+import 'package:restaurant_app/detail.dart';
 import 'package:restaurant_app/style.dart';
 
 void main() {
@@ -28,7 +29,7 @@ class _MyAppState extends State<MyApp> {
         slivers: <Widget>[
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.only(top: 55, left: 35, right: 35),
+              padding: const EdgeInsets.fromLTRB(35, 35, 35, 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -37,11 +38,11 @@ class _MyAppState extends State<MyApp> {
                     children: <Widget>[
                       Text(
                         'Discover',
-                        style: title,
+                        style: mainTitleStyle,
                       ),
                       Text(
                         'Restaurant',
-                        style: title,
+                        style: mainTitleStyle,
                       )
                     ],
                   ),
@@ -62,217 +63,226 @@ class _MyAppState extends State<MyApp> {
                   right: 35,
                   bottom: 10,
                 ),
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      height: 260,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(1, 10),
-                            blurRadius: 12,
-                          ),
-                        ],
-                        image: DecorationImage(
-                          image: NetworkImage(imgUrl[index]),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 260,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(15),
-                          topRight: Radius.circular(15),
-                        ),
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.white,
-                            Colors.white54,
-                            Colors.white10,
-                            Colors.transparent
+                child: GestureDetector(
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Detail(
+                            imagePost: imgUrl[index],
+                            titlePost: imgTitle[index],
+                          ))),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: 260,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              offset: Offset(1, 10),
+                              blurRadius: 12,
+                            ),
                           ],
-                          stops: [.38, .47, .7, 1],
+                          image: DecorationImage(
+                            image: NetworkImage(imgUrl[index]),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(45),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black12,
-                                        offset: Offset(1, 1),
-                                        blurRadius: 5,
-                                      ),
-                                    ],
-                                    color: Colors.white,
-                                  ),
-                                  child: IconButton(
-                                    icon: Icon(Icons.store,
-                                        size: 18,
-                                        semanticLabel: 'Store',
-                                        color: Colors.grey),
-                                    onPressed: () {
-                                      print('object');
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 12),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                2.1,
-                                        child: Text(
-                                          imgTitle[index],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
+                      Container(
+                        height: 260,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            topRight: Radius.circular(15),
+                          ),
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.white,
+                              Colors.white54,
+                              Colors.white10,
+                              Colors.transparent
+                            ],
+                            stops: [.38, .47, .7, 1],
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(45),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black12,
+                                          offset: Offset(1, 1),
+                                          blurRadius: 5,
                                         ),
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Text('5.0 '),
-                                          Icon(
-                                            Icons.star,
-                                            color: Colors.yellow,
-                                            size: 18,
-                                          ),
-                                          Icon(
-                                            Icons.star,
-                                            color: Colors.yellow,
-                                            size: 18,
-                                          ),
-                                          Icon(
-                                            Icons.star,
-                                            color: Colors.yellow,
-                                            size: 18,
-                                          ),
-                                          Icon(
-                                            Icons.star,
-                                            color: Colors.yellow,
-                                            size: 18,
-                                          ),
-                                          Icon(
-                                            Icons.star,
-                                            color: Colors.yellow,
-                                            size: 18,
-                                          ),
-                                          Text(
-                                            ' (100)',
-                                            style:
-                                                TextStyle(color: Colors.grey),
-                                          )
-                                        ],
-                                      ),
-                                    ],
+                                      ],
+                                      color: Colors.white,
+                                    ),
+                                    child: IconButton(
+                                      splashColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      icon: Icon(Icons.store,
+                                          size: 18,
+                                          semanticLabel: 'Store',
+                                          color: Colors.grey),
+                                      onPressed: () {
+                                        print('object');
+                                      },
+                                    ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: <Widget>[
-                                      Container(
-                                        height: 40,
-                                        width: 40,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(45),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black12,
-                                              offset: Offset(1, 1),
-                                              blurRadius: 5,
-                                            ),
-                                          ],
-                                          color: Colors.white,
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 12),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              2.1,
+                                          child: Text(
+                                            imgTitle[index],
+                                            style: titleHomeStyle,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
                                         ),
-                                        child: IconButton(
-                                          icon: Icon(Icons.send,
+                                        Row(
+                                          children: <Widget>[
+                                            Text('5.0 '),
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
                                               size: 18,
-                                              semanticLabel: 'Store',
-                                              color: (index % 2 == 0)
-                                                  ? Color(0xFF5585f4)
-                                                  : Colors.grey),
-                                          onPressed: () {
-                                            print('object');
-                                          },
+                                            ),
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
+                                              size: 18,
+                                            ),
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
+                                              size: 18,
+                                            ),
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
+                                              size: 18,
+                                            ),
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.yellow,
+                                              size: 18,
+                                            ),
+                                            Text(
+                                              ' (100)',
+                                              style:
+                                                  TextStyle(color: Colors.grey),
+                                            )
+                                          ],
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
+                                  Expanded(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        Container(
+                                          height: 40,
+                                          width: 40,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(45),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black12,
+                                                offset: Offset(1, 1),
+                                                blurRadius: 5,
+                                              ),
+                                            ],
+                                            color: Colors.white,
+                                          ),
+                                          child: IconButton(
+                                            splashColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            icon: Icon(Icons.send,
+                                                size: 18,
+                                                semanticLabel: 'Send',
+                                                color: (index % 2 == 0)
+                                                    ? Color(0xFF5585f4)
+                                                    : Colors.grey),
+                                            onPressed: () {
+                                              print('object');
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 8, left: 52),
+                                child: Text(
+                                  'Mexican - 18 Tank House Lane Hips spot for Mexican tapas with a patio Open until 12.00 AM.',
+                                  style: highlightTextHomeStyle,
                                 ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 242.5),
+                        child: Center(
+                          child: Container(
+                            height: 35,
+                            width: 160,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.horizontal(
+                                  left: Radius.circular(15),
+                                  right: Radius.circular(15)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(1, 1),
+                                  blurRadius: 7,
+                                )
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8, left: 52),
-                              child: Text(
-                                'Mexican - 18 Tank House Lane Hips spot for Mexican tapas with a patio Open until 12.00 AM.',
-                                style: TextStyle(
-                                    color: Colors.black45, fontSize: 13),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 242.5),
-                      child: Center(
-                        child: Container(
-                          height: 35,
-                          width: 160,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.horizontal(
-                                left: Radius.circular(15),
-                                right: Radius.circular(15)),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black26,
-                                offset: Offset(1, 1),
-                                blurRadius: 7,
-                              )
-                            ],
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text('N Cedar St & Cedar'),
-                              Icon(
-                                Icons.keyboard_arrow_right,
-                                size: 20,
-                                color: Colors.black38,
-                              )
-                            ],
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('N Cedar St & Cedar'),
+                                Icon(
+                                  Icons.keyboard_arrow_right,
+                                  size: 20,
+                                  color: Colors.black38,
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               );
             }, childCount: imgUrl.length),
@@ -329,13 +339,15 @@ class _MyAppState extends State<MyApp> {
       ),
     );
 
-    return Container(
-      color: Colors.white,
-      child: Stack(
-        children: <Widget>[
-          circleBackground,
-          body,
-        ],
+    return SafeArea(
+      child: Container(
+        color: Colors.white,
+        child: Stack(
+          children: <Widget>[
+            circleBackground,
+            body,
+          ],
+        ),
       ),
     );
   }
